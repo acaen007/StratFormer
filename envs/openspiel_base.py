@@ -15,10 +15,10 @@ class OpenSpielStateEnv:
         self._state = self._game.new_initial_state()
 
     def current_player(self):
-        return self._state.current_player() if self._state is not None else None
+        return self._state.current_player() if self._state is not None else 0
 
     def legal_actions(self):
-        return self._state.legal_actions() if self._state is not None else None
+        return self._state.legal_actions() if self._state is not None else []
 
     def observation(self, player):
         # For imperfect-info games: use information state string for player.
@@ -34,10 +34,10 @@ class OpenSpielStateEnv:
         return self._state.history() if self._state is not None else None
 
     def is_terminal(self):
-        return self._state.is_terminal() if self._state is not None else None
+        return self._state.is_terminal() if self._state is not None else False
 
     def step(self, a: int):
         self._state.apply_action(a) if self._state is not None else None    
 
     def returns(self):
-        return self._state.returns() if self._state is not None else None
+        return self._state.returns() if self._state is not None else [0.0] * self.num_players
