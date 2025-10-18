@@ -1,0 +1,27 @@
+{
+    "include": [
+        "."
+    ],
+    "exclude": [
+        "venv",
+        ".venv",
+        "**/__pycache__",
+        "**/.pytest_cache"
+    ],
+    "pythonVersion": "3.13",
+    "pythonPlatform": "Darwin",
+    "executionEnvironments": [
+        {
+            "root": ".",
+            "pythonVersion": "3.13",
+            "pythonPlatform": "Darwin",
+            "extraPaths": [
+                "."
+            ]
+        }
+    ],
+    "typeCheckingMode": "basic",
+    "useLibraryCodeForTypes": true,
+    "autoImportCompletions": true,
+    "indexing": true
+}
