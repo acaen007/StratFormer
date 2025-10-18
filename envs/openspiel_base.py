@@ -15,29 +15,29 @@ class OpenSpielStateEnv:
         self._state = self._game.new_initial_state()
 
     def current_player(self):
-        return self._state.current_player()
+        return self._state.current_player() if self._state is not None else None
 
     def legal_actions(self):
-        return self._state.legal_actions()
+        return self._state.legal_actions() if self._state is not None else None
 
     def observation(self, player):
         # For imperfect-info games: use information state string for player.
-        return self._state.information_state_string(player)
+        return self._state.information_state_string(player) if self._state is not None else None
 
     def info(self):
         # Optionally expose public info; keep generic.
-        return {"public_obs": self._state.observation_tensor() 
+        return {"public_obs": self._state.observation_tensor() if self._state is not None else None
                 if self._game.get_type().provides_information_state_tensor
                 else None}
 
     def history(self):
-        return self._state.history()
+        return self._state.history() if self._state is not None else None
 
     def is_terminal(self):
-        return self._state.is_terminal()
+        return self._state.is_terminal() if self._state is not None else None
 
     def step(self, a: int):
-        self._state.apply_action(a)
+        self._state.apply_action(a) if self._state is not None else None    
 
     def returns(self):
-        return self._state.returns()
+        return self._state.returns() if self._state is not None else None

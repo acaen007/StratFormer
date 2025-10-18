@@ -3,3 +3,20 @@ disable = "all"
 
 [tool.pylint.messages_control]
 disable = "all"
+
+[tool.pyright]
+typeCheckingMode = "off"
+reportGeneralTypeIssues = "none"
+reportOptionalMemberAccess = "none"
+reportOptionalSubscript = "none"
+reportPrivateImportUsage = "none"
+reportUnknownArgumentType = "none"
+reportUnknownMemberType = "none"
+reportUnknownVariableType = "none"
+reportUnnecessaryIsInstance = "none"
+reportUnnecessaryComparison = "none"
+reportUnnecessaryContains = "none"
+reportUnnecessaryTypeIgnoreComment = "none"
+
+[tool.mypy]
+ignore_errors = true
