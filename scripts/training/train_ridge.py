@@ -12,13 +12,16 @@ def collect(env_name: str, num_eps: int, opp_name: str):
     # Our agent plays fixed GTO in data collection; opponent = opp_name
     our = pool["GTO"]
     X, y = [], []
-    for _ in range(num_eps):
+    for i in range(num_eps):
         traj, _ = play_episode(env, {0: our, 1: opp})
+        print(f"Episode {i}: {len(traj)} transitions")
         for t in traj:
+            print(f"  Player {t.player}, Action {t.action}")
             if t.player == 1:  # learn opponent model
                 x, legal = dense_enc.encode(t)
                 X.append(x)
                 y.append(t.action)  # predict opponent action; alternative: type id
+    print(f"Total samples: {len(X)}")
     return np.array(X), np.array(y)
 
 if __name__ == "__main__":

@@ -6,17 +6,26 @@ def play_episode(env: Env, policies: Dict[int, Policy]) -> Tuple[List[Transition
     traj: List[Transition] = []
     while not env.is_terminal():
         p = env.current_player()
-        t = Transition(
-            obs=env.observation(p),
-            info=env.info(),
-            legal_actions=env.legal_actions(),
-            history=env.history().copy(),
-            player=p,
-        )
-        a = policies[p].act(env, p)
-        t.action = a
-        env.step(a)
-        traj.append(t)
+        if p < 0:  # Chance node, sample random action
+            legal_actions = env.legal_actions()
+            if legal_actions:
+                import random
+                a = random.choice(legal_actions)
+                env.step(a)
+            else:
+                break
+        else:  # Player node
+            t = Transition(
+                obs=env.observation(p),
+                info=env.info(),
+                legal_actions=env.legal_actions(),
+                history=env.history().copy(),
+                player=p,
+            )
+            a = policies[p].act(env, p)
+            t.action = a
+            env.step(a)
+            traj.append(t)
     rets = env.returns()
     for t in traj:
         t.terminal = True

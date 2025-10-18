@@ -26,7 +26,7 @@ class OpenSpielStateEnv:
 
     def info(self):
         # Optionally expose public info; keep generic.
-        return {"public_obs": self._state.public_observation_tensor() 
+        return {"public_obs": self._state.observation_tensor() 
                 if self._game.get_type().provides_information_state_tensor
                 else None}
 
