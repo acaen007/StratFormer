@@ -31,7 +31,7 @@ class OpenSpielStateEnv:
                 else None}
 
     def history(self):
-        return self._state.history() if self._state is not None else None
+        return self._state.history() if self._state is not None else []
 
     def is_terminal(self):
         return self._state.is_terminal() if self._state is not None else False
