@@ -7,7 +7,8 @@ stores per-policy metadata.
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Optional, Protocol
+from collections.abc import Mapping
+from typing import Any, Protocol
 
 import numpy as np
 
@@ -37,10 +38,16 @@ class StrategyPool:
     """
 
     def __init__(self) -> None:
-        self._policies: Dict[str, Policy] = {}
-        self._metadata: Dict[str, Dict[str, Any]] = {}
+        self._policies: dict[str, Policy] = {}
+        self._metadata: dict[str, dict[str, Any]] = {}
 
-    def add_policy(self, name: str, policy: Policy, *, metadata: Optional[Mapping[str, Any]] = None) -> None:
+    def add_policy(
+        self,
+        name: str,
+        policy: Policy,
+        *,
+        metadata: Mapping[str, Any] | None = None,
+    ) -> None:
         """Register a policy with optional metadata.
 
         Raises
@@ -59,7 +66,7 @@ class StrategyPool:
 
         return self._policies[name]
 
-    def list_policies(self) -> List[str]:
+    def list_policies(self) -> list[str]:
         """Return a list of policy names in insertion order."""
 
         return list(self._policies.keys())

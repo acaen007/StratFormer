@@ -7,8 +7,6 @@ unimplemented.
 
 from __future__ import annotations
 
-from typing import Optional
-
 import numpy as np
 
 __all__ = ["RidgeOpponentModel"]
@@ -24,8 +22,8 @@ class RidgeOpponentModel:
 
     def __init__(self, *, l2: float = 1.0) -> None:
         self.l2 = float(l2)
-        self._coef: Optional[np.ndarray] = None
-        self._bias: Optional[float] = None
+        self._coef: np.ndarray | None = None
+        self._bias: float | None = None
 
     def fit(self, features: np.ndarray, targets: np.ndarray) -> None:  # pragma: no cover - stub
         """Fit the model to data.

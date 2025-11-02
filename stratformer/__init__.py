@@ -13,16 +13,15 @@ Design invariants:
 Note: This module exports the public API surface via `__all__`.
 """
 
-from .utils.math_utils import logsumexp, stable_log_softmax
-from .utils.seed import set_global_seed
-from .env.open_spiel_wrapper import OpenSpielEnv
-from .pool.strategy_pool import StrategyPool
-from .oppmod.bayes_model import PosteriorTracker
 from .counter.selector import Selector
-from .novelty.novelty_detector import NoveltyDetector
+from .env.open_spiel_wrapper import OpenSpielEnv
 from .eval.evaluator import Evaluator
 from .eval.tournament import Tournament
 from .features.featurizer import Featurizer
+from .oppmod.bayes_model import PosteriorTracker
+from .pool.strategy_pool import StrategyPool
+from .utils.math_utils import logsumexp, stable_log_softmax
+from .utils.seed import set_global_seed
 
 __all__ = [
     "logsumexp",

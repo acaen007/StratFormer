@@ -6,7 +6,7 @@ installed. Import guards prevent hard dependency errors at import-time.
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 __all__ = ["LongformerOpponentModel"]
 

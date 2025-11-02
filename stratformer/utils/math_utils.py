@@ -7,7 +7,6 @@ ensure stable behavior in log-space.
 from __future__ import annotations
 
 import logging
-from typing import Optional
 
 import numpy as np
 
@@ -17,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 
 def logsumexp(
-    a: np.ndarray, *, axis: Optional[int] = None, keepdims: bool = False
+    a: np.ndarray, *, axis: int | None = None, keepdims: bool = False
 ) -> np.ndarray:
     """Compute log(sum(exp(a))) in a numerically stable way.
 

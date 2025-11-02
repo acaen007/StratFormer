@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Tuple
-
 from stratformer.env.open_spiel_wrapper import OpenSpielEnv
 from stratformer.pool.strategy_pool import StrategyPool
 
@@ -18,10 +16,15 @@ class Tournament:
     # IMPLEMENT: orchestrate matches, compute standings, and export metrics.
     """
 
-    def run(self, participants: List[str], pool: StrategyPool, env: OpenSpielEnv) -> Dict[Tuple[str, str], float]:
+    def run(
+        self,
+        participants: list[str],
+        pool: StrategyPool,
+        env: OpenSpielEnv,
+    ) -> dict[tuple[str, str], float]:
         """Return placeholder results keyed by (player, opponent)."""
 
-        results: Dict[Tuple[str, str], float] = {}
+        results: dict[tuple[str, str], float] = {}
         for i, a in enumerate(participants):
             for b in participants[i + 1 :]:
                 results[(a, b)] = 0.0

@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, List, Optional
-
 __all__ = ["Selector"]
 
 
@@ -19,11 +17,11 @@ class Selector:
 
     def select_policy(
         self,
-        candidates: List[str],
-        posteriors: Dict[str, float],
+        candidates: list[str],
+        posteriors: dict[str, float],
         *,
         kl_reg: float = 0.0,
-        exploitability_limit: Optional[float] = None,
+        exploitability_limit: float | None = None,
     ) -> str:
         """Return the selected policy name.
 

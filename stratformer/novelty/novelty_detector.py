@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from collections import deque
-from typing import Deque
 
 __all__ = ["NoveltyDetector"]
 
@@ -27,7 +26,7 @@ class NoveltyDetector:
             raise ValueError("threshold must be in [0, 1]")
         self.window_size = int(window_size)
         self.threshold = float(threshold)
-        self._buffer: Deque[float] = deque(maxlen=window_size)
+        self._buffer: deque[float] = deque(maxlen=window_size)
 
     def update(self, max_posterior: float) -> bool:
         """Ingest a new maximum posterior value and return whether novelty triggers.

@@ -8,8 +8,8 @@ numerical stability; public accessors return normalized probabilities.
 from __future__ import annotations
 
 import logging
+from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import Dict, List, Mapping
 
 import numpy as np
 
@@ -37,7 +37,7 @@ class PosteriorTracker:
     """
 
     prior: Mapping[str, float]
-    _keys: List[str] = field(init=False, repr=False)
+    _keys: list[str] = field(init=False, repr=False)
     _log_post: np.ndarray = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
@@ -73,7 +73,7 @@ class PosteriorTracker:
         norm = logsumexp(self._log_post, axis=None, keepdims=True)
         self._log_post = self._log_post - norm
 
-    def get_posteriors(self) -> Dict[str, float]:
+    def get_posteriors(self) -> dict[str, float]:
         """Return normalized posteriors as probabilities that sum to 1."""
 
         probs = np.exp(self._log_post)

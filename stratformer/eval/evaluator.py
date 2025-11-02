@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict
-
 from stratformer.env.open_spiel_wrapper import OpenSpielEnv
 from stratformer.pool.strategy_pool import Policy
 
@@ -18,7 +16,7 @@ class Evaluator:
     # IMPLEMENT: roll out episodes and aggregate metrics (win rate, EV, etc.).
     """
 
-    def evaluate(self, policy: Policy, env: OpenSpielEnv, *, num_episodes: int) -> Dict[str, float]:
+    def evaluate(self, policy: Policy, env: OpenSpielEnv, *, num_episodes: int) -> dict[str, float]:
         """Evaluate ``policy`` in ``env`` for ``num_episodes`` and return metrics.
 
         Returns a minimal placeholder to keep the interface stable.

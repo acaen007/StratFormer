@@ -8,7 +8,7 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 __all__ = ["ExperimentConfig", "load_experiment_config"]
 
@@ -60,7 +60,7 @@ def load_experiment_config(path: str | Path) -> ExperimentConfig:
             # Lazy import to keep PyYAML optional for library users
             import yaml  # type: ignore
 
-            data: Dict[str, Any] = yaml.safe_load(f) or {}
+            data: dict[str, Any] = yaml.safe_load(f) or {}
         except Exception as exc:  # noqa: BLE001 - third-party import/parse can raise various
             raise RuntimeError(f"Failed to parse YAML config at {path}: {exc}") from exc
 

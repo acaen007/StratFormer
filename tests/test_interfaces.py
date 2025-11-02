@@ -1,9 +1,9 @@
+from stratformer.counter.selector import Selector
 from stratformer.env.open_spiel_wrapper import OpenSpielEnv
 from stratformer.eval.evaluator import Evaluator
 from stratformer.eval.tournament import Tournament
 from stratformer.features.featurizer import Featurizer
 from stratformer.novelty.novelty_detector import NoveltyDetector
-from stratformer.counter.selector import Selector
 from stratformer.oppmod.bayes_model import PosteriorTracker
 from stratformer.pool.strategy_pool import StrategyPool
 
