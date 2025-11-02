@@ -6,14 +6,14 @@ include = '\\.(py|pyi)$'
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-extend-select = [
+lint.extend-select = [
   "E",  # pycodestyle errors
   "F",  # pyflakes
   "W",  # pycodestyle warnings
   "I",  # isort
   "UP", # pyupgrade
 ]
-extend-ignore = [
+lint.extend-ignore = [
   "D",  # pydocstyle (docstrings encouraged but not enforced in CI for now)
 ]
 
