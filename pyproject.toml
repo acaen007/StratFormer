@@ -1,0 +1,23 @@
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+include = "\.(py|pyi)$"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-select = [
+  "E",  # pycodestyle errors
+  "F",  # pyflakes
+  "W",  # pycodestyle warnings
+  "I",  # isort
+  "UP", # pyupgrade
+]
+extend-ignore = [
+  "D",  # pydocstyle (docstrings encouraged but not enforced in CI for now)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["stratformer"]
+
+

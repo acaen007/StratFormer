@@ -1,0 +1,41 @@
+---
+alwaysApply: true
+---
+You are working in the "stratformer" repository (Python 3.11+).
+
+Non-negotiables:
+- Target: OpenSpiel-based poker research code that scales from Kuhn → Leduc → Hold’em (abstracted).
+- Code: typed (PEP 484), docstrings (NumPy style), small functions, no dead code, no broad try/except.
+- Logging: use `logging` (INFO for run, DEBUG for internals). No print statements in library modules.
+- Reproducibility: deterministic seeding across numpy/random/torch/OpenSpiel.
+- Numerics: use log-space for likelihoods; provide `utils.math_utils` with `logsumexp`, `stable_log_softmax`.
+- I/O: all policies and experiment configs are versioned and serialized under `artifacts/` and `configs/`.
+- Tests: pytest + coverage; unit tests for each new public class/function.
+- Lint/CI: ruff + black + mypy; CI must run `pytest -q`, `ruff`, `black --check`, `mypy`.
+- Dependencies: keep `requirements.txt` minimal; optional big libs (transformers) guarded behind extras `[longformer]`.
+- Public API: `stratformer/` package exports stable interfaces; experimental code goes in `experiments/`.
+
+Directory contract (must exist):
+- stratformer/env/open_spiel_wrapper.py
+- stratformer/pool/strategy_pool.py
+- stratformer/oppmod/{bayes_model.py,ridge_model.py,longformer_model.py}
+- stratformer/counter/selector.py
+- stratformer/novelty/novelty_detector.py
+- stratformer/eval/{evaluator.py,tournament.py}
+- stratformer/utils/{config.py,seed.py,math_utils.py}
+- stratformer/obs/observer.py
+- stratformer/features/featurizer.py
+- experiments/run_kuhn_experiment.py
+- tests/* (parallel to modules)
+
+Design invariants:
+- PosteriorTracker lives inside oppmod.bayes_model (or its own module) and returns normalized posteriors.
+- Selector implements KL-regularized objective and optional exploitability constraint.
+- NoveltyDetector triggers on sustained low maximum posterior; configurable window & thresholds.
+- StrategyPool stores policies, metadata, and evaluation stubs; supports tabular & NN policies.
+
+Deliverable quality:
+- Each PR updates tests, README sections if user-facing, and `CHANGELOG.md`.
+- Add example configs: `configs/kuhn/baseline.yaml`, `configs/leduc/baseline.yaml`.
+- Every experiment script saves plots (PNG) + CSV metrics to `artifacts/exp_name/timestamp/`.
+

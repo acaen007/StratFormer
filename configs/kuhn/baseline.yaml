@@ -1,0 +1,7 @@
+game_name: kuhn_poker
+seed: 42
+num_episodes: 10
+exp_name: kuhn_baseline
+output_dir: artifacts
+
+
