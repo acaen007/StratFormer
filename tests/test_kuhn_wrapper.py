@@ -26,7 +26,7 @@ def test_zero_sum_average():
     p1 = RandomPolicy()
 
     res = env.rollout(p0, p1, n_hands=1000, seed=999)
-    total = float(res["p0_avg_return"]) + float(res["p1_avg_return"]) 
+    total = float(res["p0_avg_return"]) + float(res["p1_avg_return"])
     assert np.isclose(total, 0.0, rtol=1e-9, atol=1e-12)
 
 
