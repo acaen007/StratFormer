@@ -39,9 +39,6 @@ def logsumexp(
     Stability is achieved by subtracting the maximum value before exponentiating.
     """
 
-    if not isinstance(a, np.ndarray):
-        a = np.asarray(a)
-
     # Subtract the maximum for numerical stability
     max_a = np.max(a, axis=axis, keepdims=True)
     # Handle all -inf case: max(-inf) = -inf; subtracting yields nan if not guarded
@@ -75,9 +72,6 @@ def stable_log_softmax(logits: np.ndarray, *, axis: int = -1) -> np.ndarray:
     -----
     Computes ``log_softmax(x) = x - logsumexp(x)`` with stability via max-shift.
     """
-
-    if not isinstance(logits, np.ndarray):
-        logits = np.asarray(logits)
 
     max_logits = np.max(logits, axis=axis, keepdims=True)
     shifted = logits - max_logits

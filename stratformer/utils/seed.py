@@ -38,15 +38,15 @@ def set_global_seed(seed: int, *, deterministic_torch: bool = False) -> None:
     os.environ["PYTHONHASHSEED"] = str(seed)
 
     try:
-        import torch  # type: ignore
+        import torch
 
         torch.manual_seed(seed)
         if torch.cuda.is_available():
             torch.cuda.manual_seed_all(seed)
         if deterministic_torch:
             try:
-                torch.backends.cudnn.deterministic = True  # type: ignore[attr-defined]
-                torch.backends.cudnn.benchmark = False  # type: ignore[attr-defined]
+                torch.backends.cudnn.deterministic = True
+                torch.backends.cudnn.benchmark = False
             except Exception as exc:  # noqa: BLE001 - narrow context
                 logger.debug("Could not set cuDNN deterministic flags: %s", exc)
     except Exception:
@@ -69,14 +69,14 @@ def seed_all(seed: int) -> None:
 
     # Seed OpenSpiel if the Python API exposes a seeding hook.
     try:
-        import pyspiel  # type: ignore
+        import pyspiel
 
         if hasattr(pyspiel, "set_random_seed"):
             # Newer OpenSpiel versions
-            pyspiel.set_random_seed(int(seed))  # type: ignore[attr-defined]
+            pyspiel.set_random_seed(int(seed))
         elif hasattr(pyspiel, "set_global_random_seed"):
             # Fallback name seen in some builds
-            pyspiel.set_global_random_seed(int(seed))  # type: ignore[attr-defined]
+            pyspiel.set_global_random_seed(int(seed))
         # If no seeding hook exists, we still achieve determinism by sampling
         # chance nodes via our own NumPy RNG in environment wrappers.
     except ImportError:

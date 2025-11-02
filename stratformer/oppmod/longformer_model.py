@@ -21,7 +21,7 @@ class LongformerOpponentModel:
 
     def __init__(self, *, model_name: str = "allenai/longformer-base-4096") -> None:
         try:
-            import transformers  # type: ignore  # noqa: F401
+            import transformers  # noqa: F401
         except Exception as exc:  # pragma: no cover - import guard
             raise ImportError(
                 "LongformerOpponentModel requires the 'longformer' extra. "
