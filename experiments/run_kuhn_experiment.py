@@ -10,7 +10,7 @@ from __future__ import annotations
 import argparse
 import csv
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -23,7 +23,7 @@ from stratformer.utils.seed import set_global_seed
 
 
 def _create_output_dir(cfg: ExperimentConfig) -> Path:
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    ts = datetime.now(UTC).strftime("%Y%m%d_%H%M%S")
     out = Path(cfg.output_dir) / cfg.exp_name / ts
     out.mkdir(parents=True, exist_ok=True)
     return out
